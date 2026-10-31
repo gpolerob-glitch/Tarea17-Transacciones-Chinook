@@ -1,0 +1,9 @@
+# Credenciales locales y archivos temporales
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+__pycache__/
+# Fuente oficial descargada: se obtiene desde el enlace en README
+origen/

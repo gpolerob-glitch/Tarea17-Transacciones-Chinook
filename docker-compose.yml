@@ -1,0 +1,21 @@
+# PostgreSQL 18 aislado para Tarea 17; NO usa bases previas.
+services:
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Cree un .env local con POSTGRES_PASSWORD}
+    ports:
+      - "${PG_PORT:-5434}:5432"
+    volumes:
+      - tarea17_pgdata:/var/lib/postgresql
+      - ./:/workspace:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  tarea17_pgdata:
